@@ -2,46 +2,43 @@ package br.com.local.myappviacepapi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.concurrent.ExecutionException;
 
+import br.com.local.myappviacepapi.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
 
-    Button btnBuscarCep;
-    EditText txtCep;
-    TextView lblResposta;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        txtCep = findViewById(R.id.txtCep);
-        lblResposta = findViewById(R.id.lblResposta);
-        btnBuscarCep = findViewById(R.id.btnBuscaCep);
+        binding.btnBuscaCep.setOnClickListener(view -> {
 
-        btnBuscarCep.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            // String endereco = txtCep.getText().toString().trim();
 
-                // String endereco = txtCep.getText().toString().trim();
-
-                try {
-                    //preencher o cep no lblResposta do layout
-                    CEP retorno = new HttpService(txtCep.getText().toString().trim()).execute().get();
-                    lblResposta.setText(retorno.toString());
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
+            try {
+                //preencher o cep no lblResposta do layout
+                CEP retorno = new HttpService(binding.txtCep.getText().toString().trim()).execute().get();
+                binding.lblResposta.setText(retorno.toString());
+            } catch (ExecutionException | InterruptedException e) {
+                e.printStackTrace();
             }
+
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
         });
 
     }

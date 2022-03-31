@@ -34,7 +34,6 @@ public class HttpService extends AsyncTask<Void, Void, CEP> {
 
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
-                connection.setRequestProperty("Content-type", "application/json");
                 connection.setRequestProperty("Accept", "application/json");
                 connection.setDoOutput(true);
                 connection.setConnectTimeout(5000);
@@ -43,11 +42,9 @@ public class HttpService extends AsyncTask<Void, Void, CEP> {
                 Scanner scanner = new Scanner(url.openStream());
 
                 while (scanner.hasNext()) {
-                    resposta.append(scanner.next());
+                    resposta.append(scanner.next()).append(" ");
                 }
 
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
