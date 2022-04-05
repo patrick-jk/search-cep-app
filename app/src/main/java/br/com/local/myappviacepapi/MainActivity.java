@@ -31,7 +31,13 @@ public class MainActivity extends AppCompatActivity {
             try {
                 //preencher o cep no lblResposta do layout
                 CEP retorno = new HttpService(binding.txtCep.getText().toString().trim()).execute().get();
-                binding.lblResposta.setText(retorno.toString());
+                binding.edtStreet.setText(retorno.getLogradouro());
+                binding.edtDistrict.setText(retorno.getBairro());
+                binding.edtCity.setText(retorno.getLocalidade());
+                binding.edtState.setText(retorno.getUf());
+                if (retorno.getComplemento().isEmpty()) {
+                    binding.edtComplement.setVisibility(View.GONE);
+                }
             } catch (ExecutionException | InterruptedException e) {
                 e.printStackTrace();
             }

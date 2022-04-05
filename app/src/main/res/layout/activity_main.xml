@@ -15,7 +15,8 @@
         android:hint="Insira seu CEP"
         android:inputType="number"
         android:textColor="#595959"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:autofillHints="postalCode" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,12 +37,60 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/lblResposta"
+    <EditText
+        android:id="@+id/edtStreet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Rua"
         android:layout_marginTop="16dp"
+        android:autofillHints="postalAddress"
+        android:inputType="textPostalAddress"
         android:textColor="#000000"
         android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/edtDistrict"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:autofillHints="postalAddress"
+        android:inputType="textPostalAddress"
+        android:hint="Bairro"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/edtComplement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:autofillHints="postalAddress"
+        android:inputType="textPostalAddress"
+        android:hint="Complemento"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/edtCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:autofillHints="postalAddress"
+        android:hint="Cidade"
+        android:inputType="textPostalAddress"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/edtState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:autofillHints="postalAddress"
+        android:hint="Estado"
+        android:inputType="textPostalAddress"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+
 
 </LinearLayout>
